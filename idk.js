@@ -4,20 +4,39 @@ var pt = 0;
 var ptpc=1;
 //point per click upgrade cost 
 var ptpcuc=10;
-//points per upgrade value
-var ptpcuv=1;
+//cooldown max
+var ptpccdm=100;
 
+//images 
+function preload(){
+  //factions
+aztecGators = loadImage("aztecGators.png");
+  //maps
+theIsle = loadImage("theIsle.png");
+
+}
 //canvas and other stuff
 function setup() {
   createCanvas(1500, 715);
 }
-//draw the ui
+
+
+
+//draw the ui and gameplay 
 function draw() {
-  text("Points: " + pt, 10, 20);
-  text("Points per click: " + ptpc, 10, 40);
-  text("Upgrade cost: " + ptpcuc, 10, 60);
+  background(255,255,255);
+  text("Points:" + pt, 10, 20);
+  text("Points per capital:" + ptpc, 10, 40);
+  text("production timer:" + ptpccd, 10, 60);
+ 
+ptpccd=ptpccd-1;
+   if (ptpccd <= 0) {
+    pt =pt +ptpc;
+    ptpccd=ptpccdm;
+  
 }
-//clicker
+}
+//game interactions 
 function mousePressed() {
-  pt += ptpc;
+ 
 }
