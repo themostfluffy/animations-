@@ -11,6 +11,7 @@ var ptpccdm=100;
 function preload(){
   //factions
 aztecGators = loadImage("aztecGators.png");
+romanwolfs =loadImage("romanwolfs.png");
   //maps
 theIsle = loadImage("theIsle.png");
 
