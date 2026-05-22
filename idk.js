@@ -1,4 +1,4 @@
-//points
+//points/economy
 var pt = 0;
 //points per click
 var ptpc = 1;
@@ -10,12 +10,21 @@ var ptpccd = 100;
 //cooldown max
 var ptpccdm = 100;
 
-//factions
+//implimented  factions
 var aztecGators;
 
 var romanWolfs;
 
-var factions = [aztecGators, romanWolfs];
+//unimplimented factions
+var faction3;
+var faction4;
+var faction5;
+var faction6;
+var faction7;
+var faction8;
+
+//list of factions
+var factions = [aztecGators, romanWolfs, faction3, faction4, faction5, faction6, faction7, faction8];
 //font
 let pressStart;
 
@@ -25,6 +34,7 @@ function preload() {
   //factions
   aztecGators = loadImage("aztecGators.png");
   //romanWolfs =loadImage("romanWolfs.png");
+
   //maps
   //theIsle = loadImage("theIsle.png");
 }
@@ -44,6 +54,7 @@ function draw() {
   //ui
   textFont(pressStart);
   textSize(16);
+  factionSelect();
   text("Points:" + pt, 10, 20);
   text("Points per capital:" + ptpc, 10, 40);
   text("production timer:" + ptpccd, 10, 60);
@@ -53,6 +64,52 @@ function draw() {
     pt = pt + ptpc;
     ptpccd = ptpccdm;
   }
+  
 }
 //game interactions
-function mousePressed() {}
+function mousePressed() {
+
+}
+//faction selection
+function factionSelect() {
+  if (mouseX > 10 && mouseX < 110 && mouseY > 80 && mouseY < 180) {
+    console.log("aztecGators");
+    text("aztec", 500, 20);
+  }
+  if (mouseX > 120 && mouseX < 220 && mouseY > 80 && mouseY < 180) {
+    console.log("romanWolfs");
+    text("rome", 500, 20);
+  }
+  if (mouseX > 10 && mouseX < 110 && mouseY > 190 && mouseY < 290) {
+    console.log("faction3");
+    text("faction3", 500, 20);
+  }
+  if (mouseX > 120 && mouseX < 220 && mouseY > 190 && mouseY < 290) {
+    console.log("faction4");
+    text("faction4", 500, 20);
+  }
+  if (mouseX > 10 && mouseX < 110 && mouseY > 300 && mouseY < 400) {
+    console.log("faction5");
+    text("faction5", 500, 20);
+  }
+  if (mouseX > 120 && mouseX < 220 && mouseY > 300 && mouseY < 400) {
+    console.log("faction6");
+    text("faction6", 500, 20);
+  }
+  if (mouseX > 10 && mouseX < 110 && mouseY > 410 && mouseY < 510) {
+    console.log("faction7");
+    text("faction7", 500, 20);
+  }
+  if (mouseX > 120 && mouseX < 220 && mouseY > 400 && mouseY < 510) {
+    console.log("faction8");
+    text("faction8", 500, 20);
+  }
+  if (mouseX > 10 && mouseX < 110 && mouseY > 500 && mouseY < 600) {
+    console.log("faction9");
+    text("faction9", 500, 20);
+  }
+  if (mouseX > 120 && mouseX < 220 && mouseY > 500 && mouseY < 600) {
+    console.log("faction10");
+    text("faction10", 500, 20);
+  }
+}
