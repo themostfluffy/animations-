@@ -100,15 +100,15 @@ function factionSelect() {
     console.log("faction7");
     text("faction7", 500, 20);
   }
-  if (mouseX > 120 && mouseX < 220 && mouseY > 400 && mouseY < 510) {
+  if (mouseX > 120 && mouseX < 220 && mouseY > 410 && mouseY < 510) {
     console.log("faction8");
     text("faction8", 500, 20);
   }
-  if (mouseX > 10 && mouseX < 110 && mouseY > 500 && mouseY < 600) {
+  if (mouseX > 10 && mouseX < 110 && mouseY > 520 && mouseY < 620) {
     console.log("faction9");
     text("faction9", 500, 20);
   }
-  if (mouseX > 120 && mouseX < 220 && mouseY > 500 && mouseY < 600) {
+  if (mouseX > 120 && mouseX < 220 && mouseY > 520 && mouseY < 620) {
     console.log("faction10");
     text("faction10", 500, 20);
   }
