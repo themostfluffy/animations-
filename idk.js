@@ -4,22 +4,30 @@ var pt = 0;
 var year = 2250;
 //points per capital
 var ptpc = 1;
-//point per click upgrade cost
+//point per capital upgrade cost
 var ptpcuc = 10;
-//piont cooldown
+//planets
+var waterPlanets = 0;
+var earthLikePlanets = 0;
+var gasPlanets = 0;
+var icePlanets = 0;
+var lavaPlanets = 0;
+//point cooldown
 var ptpccd = 100;
 
 //cooldown max
 var ptpccdm = 100;
 
 //implimented  factions
-var notPlaying = 0;
+var notPlaying;
+
 var aztecGators;
 
 var romanWolfs;
 
-//unimplimented factions
 var cartageCrocs;
+//unimplimented factions
+
 var faction4;
 var faction5;
 var faction6;
@@ -37,6 +45,32 @@ var factionsList = [
   faction6,
   faction7,
   faction8,
+];
+//age sysrtem list
+var earlySpaceAge;
+var starExplorationAge;
+var ionicPropultionAge;
+var darkMatterDiscoveryAge;
+var darkMatterResearchAge;
+var darkMatterUtilizationAge;
+var intergalacticTravelAge;
+var intergalacticEmpireAge;
+var ages = [
+  earlySpaceAge,
+
+  starExplorationAge,
+
+  ionicPropultionAge,
+
+  darkMatterDiscoveryAge,
+
+  darkMatterResearchAge,
+
+  darkMatterUtilizationAge,
+
+  intergalacticTravelAge,
+
+  intergalacticEmpireAge,
 ];
 //current selected faction
 factions = 0;
@@ -59,8 +93,8 @@ function preload() {
   }
   //romanWolfs =loadImage("romanWolfs.png");
 
-  //maps
-  //theIsle = loadImage("theIsle.png");
+  planets = loadImage("placeholderplanets.png");
+
 }
 
 //canvas and other stuff
@@ -87,6 +121,10 @@ function draw() {
   }
   textSize(16);
   fill(0);
+  //credits
+  text("game by fuzzy_foxf" , 10, 710);
+
+  //game info
   text("Points:" + pt, 10, 20);
   text("Points per capital:" + ptpc, 10, 40);
   text("production timer:" + ptpccd, 10, 60);
@@ -111,6 +149,13 @@ function draw() {
       ptpccd = ptpccdm;
     }
   }
+  //planets and map
+  
+    image(planets, 300, 80, );
+
+
+  image(planets, 400, 80, );
+ 
 }
 
 //game interactions
@@ -180,3 +225,4 @@ function factionSelect() {
     text("faction8", 500, 20);
   }
 }
+
