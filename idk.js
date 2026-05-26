@@ -1,6 +1,8 @@
 //points/economy
 var pt = 0;
-//points per click
+//year
+var year = 2250;
+//points per capital
 var ptpc = 1;
 //point per click upgrade cost
 var ptpcuc = 10;
@@ -11,12 +13,13 @@ var ptpccd = 100;
 var ptpccdm = 100;
 
 //implimented  factions
+var notPlaying = 0;
 var aztecGators;
 
 var romanWolfs;
 
 //unimplimented factions
-var faction3;
+var cartageCrocs;
 var faction4;
 var faction5;
 var faction6;
@@ -24,15 +27,36 @@ var faction7;
 var faction8;
 
 //list of factions
-var factions = [aztecGators, romanWolfs, faction3, faction4, faction5, faction6, faction7, faction8];
+var factionsList = [
+  notPlaying,
+  aztecGators,
+  romanWolfs,
+  cartageCrocs,
+  faction4,
+  faction5,
+  faction6,
+  faction7,
+  faction8,
+];
+//current selected faction
+factions = 0;
 //font
 let pressStart;
 
 //images
 function preload() {
-  pressStart = loadFont("PressStart2P-Regular.ttf");
-  //factions
-  aztecGators = loadImage("aztecGators.png");
+  try {
+    pressStart = loadFont("PressStart2P-Regular.ttf");
+  } catch (e) {
+    console.log("Font not loaded, using default");
+  }
+
+  try {
+    //factions
+    aztecGators = loadImage("aztecGators.png");
+  } catch (e) {
+    console.log("aztecGators image not loaded");
+  }
   //romanWolfs =loadImage("romanWolfs.png");
 
   //maps
@@ -44,32 +68,83 @@ function setup() {
   createCanvas(1500, 715);
   textFont(pressStart);
   textSize(16);
+  console.log("Setup complete - p5.js is working!");
 }
 
 //draw the ui and gameplay
 function draw() {
   background(255, 255, 255);
   //image
-  image(aztecGators, 10, 80, 100, 100);
+  if (aztecGators) {
+    image(aztecGators, 10, 80, 100, 100);
+  } else {
+    fill(0);
+    rect(10, 80, 100, 100);
+  }
   //ui
-  textFont(pressStart);
+  if (pressStart) {
+    textFont(pressStart);
+  }
   textSize(16);
-  factionSelect();
+  fill(0);
   text("Points:" + pt, 10, 20);
   text("Points per capital:" + ptpc, 10, 40);
   text("production timer:" + ptpccd, 10, 60);
 
-  ptpccd = ptpccd - 1;
-  if (ptpccd <= 0) {
-    pt = pt + ptpc;
-    ptpccd = ptpccdm;
+  if (factions == 0) {
+    // code to set the selected faction as the current faction
+    // maybe use list variable to store the selected faction and use it in the game logic
+    text("unselected", 500, 20);
+  } else if (factions == 1) {
+    text("aztecGators", 500, 20);
+  } else if (factions == 2) {
+    text("romanWolfs", 500, 20);
+  } else if (factions == 3) {
+    text("cartageCrocs", 500, 20);
   }
-  
+
+  //point production
+  if (factions > 0) {
+    ptpccd = ptpccd - 1;
+    if (ptpccd <= 0) {
+      pt = pt + ptpc;
+      ptpccd = ptpccdm;
+    }
+  }
 }
+
 //game interactions
 function mousePressed() {
-
+  //permenet faction selection
+  if (
+    mouseX > 10 &&
+    mouseX < 110 &&
+    mouseY > 80 &&
+    mouseY < 180 &&
+    factions == 0
+  ) {
+    factions = 1;
+  }
+  if (
+    mouseX > 120 &&
+    mouseX < 220 &&
+    mouseY > 80 &&
+    mouseY < 180 &&
+    factions == 0
+  ) {
+    factions = 2;
+  }
+  if (
+    mouseX > 10 &&
+    mouseX < 110 &&
+    mouseY > 190 &&
+    mouseY < 290 &&
+    factions == 0
+  ) {
+    factions = 3;
+  }
 }
+
 //faction selection
 function factionSelect() {
   if (mouseX > 10 && mouseX < 110 && mouseY > 80 && mouseY < 180) {
@@ -81,8 +156,8 @@ function factionSelect() {
     text("rome", 500, 20);
   }
   if (mouseX > 10 && mouseX < 110 && mouseY > 190 && mouseY < 290) {
-    console.log("faction3");
-    text("faction3", 500, 20);
+    console.log("cartageCrocs");
+    text("cartage", 500, 20);
   }
   if (mouseX > 120 && mouseX < 220 && mouseY > 190 && mouseY < 290) {
     console.log("faction4");
@@ -103,13 +178,5 @@ function factionSelect() {
   if (mouseX > 120 && mouseX < 220 && mouseY > 410 && mouseY < 510) {
     console.log("faction8");
     text("faction8", 500, 20);
-  }
-  if (mouseX > 10 && mouseX < 110 && mouseY > 520 && mouseY < 620) {
-    console.log("faction9");
-    text("faction9", 500, 20);
-  }
-  if (mouseX > 120 && mouseX < 220 && mouseY > 520 && mouseY < 620) {
-    console.log("faction10");
-    text("faction10", 500, 20);
   }
 }
