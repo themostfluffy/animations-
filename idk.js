@@ -1,4 +1,4 @@
-//points/economy
+//points/economy for player 
 var pt = 0;
 //year
 var year = 2250;
