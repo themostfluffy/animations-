@@ -1,4 +1,4 @@
-//points/economy for player 
+//points/economy for player  
 var pt = 0;
 //year
 var year = 2250;
@@ -6,17 +6,23 @@ var year = 2250;
 var ptpc = 1;
 //point per capital upgrade cost
 var ptpcuc = 10;
-//planets
-var waterPlanets = 0;
-var earthLikePlanets = 0;
-var gasPlanets = 0;
-var icePlanets = 0;
-var lavaPlanets = 0;
+
 //point cooldown
 var ptpccd = 100;
 
 //cooldown max
 var ptpccdm = 100;
+
+//planets owned by player
+var waterPlanets = 0;
+var desertPlanets = 0;
+var icePlanets = 0;
+var giaPlanets = 0;
+//planets in image
+var wPlanets;
+var dPlanets;
+var iPlanets;
+var gPlanets;
 
 //implimented  factions
 var notPlaying;
@@ -57,19 +63,12 @@ var intergalacticTravelAge;
 var intergalacticEmpireAge;
 var ages = [
   earlySpaceAge,
-
   starExplorationAge,
-
   ionicPropultionAge,
-
   darkMatterDiscoveryAge,
-
   darkMatterResearchAge,
-
   darkMatterUtilizationAge,
-
   intergalacticTravelAge,
-
   intergalacticEmpireAge,
 ];
 //current selected faction
@@ -93,7 +92,13 @@ function preload() {
   }
   //romanWolfs =loadImage("romanWolfs.png");
 
-  planets = loadImage("placeholderplanets.png");
+  //planets
+  wPlanets = loadImage("waterPlanets.png");
+  dPlanets = loadImage("desertPlanets.png");
+  iPlanets = loadImage("frozenPlanets.png");
+  gPlanets = loadImage("giaPlanets.png");
+
+  space = loadImage("space.png");
 
 }
 
@@ -107,8 +112,10 @@ function setup() {
 
 //draw the ui and gameplay
 function draw() {
-  background(255, 255, 255);
+  background(0);
   //image
+  // map
+  image(space, 220, 75,);
   if (aztecGators) {
     image(aztecGators, 10, 80, 100, 100);
   } else {
@@ -120,9 +127,9 @@ function draw() {
     textFont(pressStart);
   }
   textSize(16);
-  fill(0);
+  fill(255);
   //credits
-  text("game by fuzzy_foxf" , 10, 710);
+  text("game and art by fuzzy_foxf" , 10, 710);
 
   //game info
   text("Points:" + pt, 10, 20);
@@ -226,3 +233,8 @@ function factionSelect() {
   }
 }
 
+//planet randomization
+function planetRandomizer() {
+  //randomize planets on the map
+  //maybe use a list variable to store the planets and their locations and use it in the game logic
+}
