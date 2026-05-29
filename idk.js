@@ -103,7 +103,7 @@ function preload() {
   //gPlanets = loadImage("giaPlanets.png");
 
   // populate planets array only after images are loaded
-  planets = [wPlanets, dPlanets /*, iPlanets, gPlanets*/];
+  planets = [wPlanets, dPlanets, iPlanets, /*gPlanets*/];
 
   space = loadImage("space.png");
 }
@@ -115,7 +115,7 @@ function setup() {
   textSize(16);
   console.log("Setup complete - p5.js is working!");
   // generate static planet placements once
-  planetRandomizer(20);
+  planetRandomizer(15);
 }
 
 //draw the ui and gameplay
