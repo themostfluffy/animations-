@@ -1,4 +1,4 @@
-//points/economy for player  
+//points/economy for player
 var pt = 0;
 //year
 var year = 2250;
@@ -17,12 +17,16 @@ var ptpccdm = 100;
 var waterPlanets = 0;
 var desertPlanets = 0;
 var icePlanets = 0;
-var giaPlanets = 0;
+var gaiaPlanets = 0;
 //planets in image
 var wPlanets;
 var dPlanets;
 var iPlanets;
 var gPlanets;
+// will be populated in preload() after images load
+var planets = [];
+// placedPlanets will hold static planet instances drawn each frame
+var placedPlanets = [];
 
 //implimented  factions
 var notPlaying;
@@ -93,13 +97,15 @@ function preload() {
   //romanWolfs =loadImage("romanWolfs.png");
 
   //planets
-  wPlanets = loadImage("waterPlanets.png");
-  dPlanets = loadImage("desertPlanets.png");
-  iPlanets = loadImage("frozenPlanets.png");
-  gPlanets = loadImage("giaPlanets.png");
+  wPlanets = loadImage("waterPlanet.png");
+  dPlanets = loadImage("desertPlanet.png");
+  //iPlanets = loadImage("frozenPlanets.png");
+  //gPlanets = loadImage("giaPlanets.png");
+
+  // populate planets array only after images are loaded
+  planets = [wPlanets, dPlanets /*, iPlanets, gPlanets*/];
 
   space = loadImage("space.png");
-
 }
 
 //canvas and other stuff
@@ -108,6 +114,8 @@ function setup() {
   textFont(pressStart);
   textSize(16);
   console.log("Setup complete - p5.js is working!");
+  // generate static planet placements once
+  planetRandomizer(20);
 }
 
 //draw the ui and gameplay
@@ -115,7 +123,12 @@ function draw() {
   background(0);
   //image
   // map
-  image(space, 220, 75,);
+  image(space, 220, 75);
+  // draw static planets placed at startup
+  for (let p of placedPlanets) {
+    if (p.img) image(p.img, p.x, p.y);
+  }
+  //faction selection
   if (aztecGators) {
     image(aztecGators, 10, 80, 100, 100);
   } else {
@@ -129,7 +142,7 @@ function draw() {
   textSize(16);
   fill(255);
   //credits
-  text("game and art by fuzzy_foxf" , 10, 710);
+  text("game and art by fuzzy_foxf", 10, 710);
 
   //game info
   text("Points:" + pt, 10, 20);
@@ -156,13 +169,7 @@ function draw() {
       ptpccd = ptpccdm;
     }
   }
-  //planets and map
-  
-    image(planets, 300, 80, );
-
-
-  image(planets, 400, 80, );
- 
+  //planets and map (individual images should be drawn explicitly)
 }
 
 //game interactions
@@ -234,7 +241,17 @@ function factionSelect() {
 }
 
 //planet randomization
-function planetRandomizer() {
-  //randomize planets on the map
-  //maybe use a list variable to store the planets and their locations and use it in the game logic
+function planetRandomizer(count) {
+  // create `count` planet instances and store them for static drawing
+  count = count || 8;
+  placedPlanets = [];
+  if (!planets || planets.length === 0) return;
+  let available = planets.filter((p) => p);
+  if (available.length === 0) return;
+  for (let i = 0; i < count; i++) {
+    let img = random(available);
+    let x = random(220, width - 50);
+    let y = random(75, height - 50);
+    placedPlanets.push({ img, x, y });
+  }
 }
