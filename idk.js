@@ -99,7 +99,7 @@ function preload() {
   //planets
   wPlanets = loadImage("waterPlanet.png");
   dPlanets = loadImage("desertPlanet.png");
-  //iPlanets = loadImage("frozenPlanets.png");
+  iPlanets = loadImage("frozenPlanet.png");
   //gPlanets = loadImage("giaPlanets.png");
 
   // populate planets array only after images are loaded
